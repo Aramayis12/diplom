@@ -1,0 +1,111 @@
+
+
+
+<tabs>
+    <pane title="News">
+        <div id="news" class="top-buffer">
+            <div ng-repeat="item in items  | filter:itemsList">
+                <div class="row">
+                    <div class="col-sm-4"><a ng-href="#/news/post/{{item.id}}" class=""><img ng-src="admin/{{ item.image }}" class="img-responsive"></a>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3 class="title">{{ item.name }}</h3>
+                        <p class="text-muted"><span class="glyphicon glyphicon-lock"></span>Available Exclusively for Premium Members</p>
+                        <p>{{ item.description | limitTo:200 }} ...</p>
+
+                        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
+                        <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>
+                        <br /><p class="text-muted">Presented by <a href="#">Ellen Richey</a></p>
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+
+
+            <ul class="pagination pagination-lg pull-right">
+                <li ><a ng-href="#{{ url }}">«</a></li>
+                <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a ng-href="#{{ url }}">{{ page + 1 }}</a></li>
+                <li ng-click="pageToNext()"><a ng-href="#{{ url }}">»</a></li>
+            </ul>
+        </div>
+    </pane>
+    <pane title="Hotels">
+        Hotel
+    </pane>
+    <pane title="About">
+
+        <article class="blog-post top-buffer" ng-controller="SeaAboutTabController">
+            <div class="blog-post-image">
+                <a href="post.html"><img ng-src="admin/{{ item.img_path }}" alt="" width="100%"></a>
+            </div>
+            <div class="blog-post-body">
+                <h2><a href="post.html">{{ item.name }}</a></h2>
+                <div class="post-meta"><span>by <a href="#">Jamie Mooze</a></span>/<span><i class="fa fa-clock-o"></i>March 14, 2015</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
+                <div class="blog-post-text">
+
+                    <p>{{ item.description }}</p>
+
+                </div>
+            </div>
+
+            <div class="social_stuff">
+                <div class="widget">
+                    <div class="twitter">
+                        <div class="stat"><a href="http://twitter.com/wrapbootstrap" title="Follow us on Twitter!" target="_blank" rel="nofollow"><span class="count">27.1k</span><span class="desc">Followers</span></a></div>
+                    </div>
+                    <div class="facebook">
+                        <div class="stat"><a href="http://www.facebook.com/wrapbootstrap" title="Follow us on Facebook!" target="_blank" rel="nofollow"><span class="count">31.6k</span><span class="desc">Followers</span></a></div>
+                    </div>
+                    <div class="rss">
+                        <div class="stat"><a href="http://feeds.feedburner.com/wrapbootstrap" title="Subscribe to our RSS feed!" target="_blank" rel="nofollow"><span class="count">757</span><span class="desc">Subscribers</span></a></div>
+                    </div>
+                    <div class="email">
+                        <div class="stat"><a href="http://eepurl.com/iVhpj" title="Subscribe to our newsletter!" target="_blank" rel="nofollow"><span class="count">53.5k</span><span class="desc">Subscribers</span></a></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="custom-panel comic-panel">
+                <div class="custom-panel-title">
+                    <h4>A simple Bootstrap component: Navigation</h4>
+                </div>
+                <div class="custom-panel-body">
+                    <p class="comicchar-holder">
+                        <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
+                    </p>
+                    <p class="comment-text">
+                        To create a navigation component you have to use following HTML markup with the shown CSS classes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="custom-panel comic-panel" style="float: right;">
+                <div class="custom-panel-title">
+                    <h4>A simple Bootstrap component: Navigation</h4>
+                </div>
+                <div class="custom-panel-body">
+                    <p class="comicchar-holder" style="float: right;">
+                        <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
+                    </p>
+                    <p class="comment-text">
+                        To create a navigation component you have to use following HTML markup with the shown CSS classes.
+                    </p>
+                </div>
+            </div>
+
+        </article>
+
+
+    </pane>
+</tabs>
+
+
+
+
+
+
+
+
+

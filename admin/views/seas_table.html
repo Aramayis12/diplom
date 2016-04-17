@@ -1,0 +1,24 @@
+<table datatable="ng" class="row-border hover table table-striped responsive-utilities jambo_table bulk_action">
+    <thead>
+    <tr class="headings">
+        <th class="column-title"><input type="checkbox" id="check-all" class="flat"></th>
+        <th class="column-title">ID</th>
+        <th class="column-title">Name</th>
+        <th class="column-title">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="sea in seas"  class="even pointer">
+        <td class="a-center ">
+            <input type="checkbox" class="flat" name="table_records">
+        </td>
+        <td class=" ">{{ sea.id }}</td>
+        <td class=" ">{{ sea.name }}</td>
+        <td class=" ">
+            <a href="#">View</a>
+            <a href="#"> Edit</a>
+            <a href="#"> Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

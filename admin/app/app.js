@@ -1,0 +1,1 @@
+var adminApp = angular.module('adminApp', ['LocalStorageModule', 'ui.router','datatables','angularFileUpload']);

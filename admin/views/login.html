@@ -1,0 +1,30 @@
+
+<!-----start-main---->
+<div class="login-form" ng-controller="AuthController">
+    <!---728x90--->
+    <h1>Sign In</h1>
+    <h2><a href="#">Create Account</a></h2>
+    <form ng-submit="submitLogin( loginData )">
+        <li>
+            <input type="text" class="text" ng-model="loginData.username" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}" ><a href="#" class=" icon user"></a>
+        </li>
+        <li>
+            <input type="password" value="Password" ng-model="loginData.password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"><a href="#" class=" icon lock"></a>
+        </li>
+
+        <div class ="forgot">
+            <h3><a href="#">Forgot Password?</a></h3>
+            <input type="submit" value="Sign In" > <a href="#" class=" icon arrow"></a>                                                                                                                                                                                                                                 </h4>
+        </div>
+    </form>
+</div>
+<!--//End-login-form-->
+
+<div class="copy-right">
+    <p> &copy; 2014 Golden login form. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+</div>
+
+
+
+<!---728x90--->
+<!-----//end-copyright---->
