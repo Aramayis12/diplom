@@ -32,6 +32,15 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
         var_dump( $_FILES );
     }
 
+    // sharunakeli
+
+} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'hotel'){
+    include('DB/tables/HotelTable.php');
+
+    $data = json_decode( $_POST['data'] );
+    $result = HotelTable::updateHotelsFields( $data );
+    echo json_encode( $data );
+
 }
 
 

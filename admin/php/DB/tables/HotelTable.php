@@ -5,7 +5,7 @@ if (interface_exists('ConstructDB')) {
         private static $tableName = 'hotel_table';
         private static $tableFields = array(
             'id' => 'id',
-            'name_hotel' => 'name_hotel',
+            'name' => 'name',
             'stars' => 'stars',
             'description_hotel' => 'description_hotel',
             'img_hotel_path' => 'img_hotel_path'
@@ -66,6 +66,35 @@ WHERE h.id=:id';
             $result = $stmt->fetchAll();
             return $result;
 
+
+        }
+
+        public function updateHotelsFields( $data ){
+            $db = ConnectDB();
+
+            $sql = '
+UPDATE ' . self::getTableName() . ' SET
+    name = :hotel_name,
+    stars = :hotel_stars,
+    description_hotel = :hotel_desc,
+    sea_id = :hotel_sea_ID
+WHERE id = :hotel_ID';
+
+
+            $stmt = $db->prepare($sql);
+
+            var_dump('hotel_stars - ', (int) $data->hotel_stars);
+            var_dump('hotel_sea_ID - ', (int) $data->hotel_sea_ID);
+            var_dump('hotel_ID - ', (int) $data->hotel_ID);
+
+
+            $stmt->bindValue( ':hotel_name', $data->hotel_name, PDO::PARAM_STR );
+            $stmt->bindValue( ':hotel_stars', (int) $data->hotel_stars, PDO::PARAM_INT );
+            $stmt->bindValue( ':hotel_desc', $data->hotel_desc, PDO::PARAM_STR );
+            $stmt->bindValue( ':hotel_sea_ID',  (int) $data->hotel_sea_ID, PDO::PARAM_INT );
+            $stmt->bindValue( ':hotel_ID',  (int) $data->hotel_ID, PDO::PARAM_INT );
+
+            $stmt->execute();
 
         }
     }
