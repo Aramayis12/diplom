@@ -48,6 +48,24 @@ adminApp.config(function($stateProvider, $urlRouterProvider) {
                 controller: 'HomeNewsController'
             }
         }
+        }).state('home.news.edit',{
+            url:"/edit/:id",
+            views: {
+                "formcontent": {
+                    templateUrl: 'views/form/news_form.html',
+                    controller: 'HomeNewsEditController'
+                },
+
+            }
+        }).state('home.news.add',{
+        url:"/add",
+        views: {
+            "formcontent": {
+                templateUrl: 'views/form/news_form.html',
+                controller: 'HomeNewsAddController'
+            },
+
+        }
     });
 
 

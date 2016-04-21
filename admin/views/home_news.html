@@ -58,7 +58,7 @@
                                         <p>{{ news.name }}</p>
                                         <div class="tools tools-bottom">
                                             <a href="#"><i class="fa fa-link"></i></a>
-                                            <a ui-sref="home.hotel.edit({id:news.id})"><i class="fa fa-pencil"></i></a>
+                                            <a ui-sref="home.news.edit({id:news.id})"><i class="fa fa-pencil"></i></a>
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
 
                         <div class="col-md-55">
                             <div class="thumbnail">
-                                <button type="button" class="btn btn-success button-add-item" aria-label="Left Align" >
+                                <button type="button" class="btn btn-success button-add-item" aria-label="Left Align" ui-sref="home.news.add">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                 </button>
                             </div>

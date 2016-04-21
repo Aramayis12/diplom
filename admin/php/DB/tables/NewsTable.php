@@ -20,23 +20,21 @@ if ( interface_exists( 'ConstructDB' ) ) {
             return self::$tableFields;
         }
 
-        public static function insertNews(  $data , $file_path )
+        public static function insertNews(  $data )
         {
             $db = ConnectDB();
-
+           
             $sql = '
-INSERT INTO ' . self::getTableName() . ' ( name, description, image, sea_id )
-VALUES ( :name, :description, :image, :sea_id )
-            ';
+INSERT INTO ' . self::getTableName() . ' ( name, description, sea_id, image )
+VALUES ( :name, :description, :sea_ID, :image )';
 
             $stmt = $db->prepare( $sql );
 
 
-            $stmt->bindValue( ':name', $data["name"], PDO::PARAM_STR );
-            $stmt->bindValue( ':description', $data["description"], PDO::PARAM_STR );
-            $stmt->bindValue( ':image', $file_path, PDO::PARAM_STR );
-            $stmt->bindValue( ':sea_id', $data["sea_id"], PDO::PARAM_INT );
-
+            $stmt->bindValue( ':name', $data->news_name, PDO::PARAM_STR );
+            $stmt->bindValue( ':description', $data->news_desc, PDO::PARAM_STR );
+            $stmt->bindValue( ':sea_ID',  (int) $data->news_sea_ID, PDO::PARAM_INT );
+            $stmt->bindValue( ':image', $data->news_image, PDO::PARAM_STR );
 
             $stmt->execute();
             $lastInsertId = $db->lastInsertId();
@@ -90,6 +88,55 @@ WHERE  id = :id";
 
             return $res;
         }
+
+        public function getNewsOneWithSeaInfo( $id ) {
+            $db = ConnectDB();
+
+            $sql = '
+SELECT n.id AS news_ID,
+       n.name AS news_name,
+       n.description AS news_description,
+       n.image AS news_image,
+       s.id AS sea_ID,
+       s.name AS sea_name
+FROM ' . self::getTableName() . ' AS n
+    INNER JOIN
+     ' . SeaTable::getTableName() . ' AS s
+        ON n.sea_id = s.id
+WHERE n.id=:id';
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue( ':id', $id, PDO::PARAM_INT );
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        }
+
+        public function updateNewsFields( $data ){
+            $db = ConnectDB();
+
+            $sql = '
+UPDATE ' . self::getTableName() . ' SET
+    name = :news_name,
+    description = :news_desc,
+    sea_id = :news_sea_ID
+WHERE id = :news_ID';
+
+
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue( ':news_name', $data->news_name, PDO::PARAM_STR );
+            $stmt->bindValue( ':news_desc', $data->news_desc, PDO::PARAM_STR );
+            $stmt->bindValue( ':news_sea_ID',  (int) $data->news_sea_ID, PDO::PARAM_INT );
+            $stmt->bindValue( ':news_ID',  (int) $data->news_ID, PDO::PARAM_INT );
+
+            $stmt->execute();
+
+        }
+
+
+
+
 
     }
 }
