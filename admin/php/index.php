@@ -39,8 +39,13 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
 
     $data = json_decode( $_POST['data'] );
     $result = HotelTable::updateHotelsFields( $data );
-    echo json_encode( $data );
 
+
+} else if( $_GET['action'] == 'get' && $_GET['name'] == 'news'){
+    include('DB/tables/NewsTable.php');
+
+    $result = NewsTable::selectNews();
+    echo json_encode( $result );
 }
 
 

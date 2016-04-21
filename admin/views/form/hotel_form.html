@@ -2,6 +2,7 @@
 
     <div class="clearfix"></div>
 
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -25,6 +26,10 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+
+                    <div class="alert alert-success" ng-show="FormEditSuccess">
+                        <strong>Success!</strong> Indicates a successful or positive action.
+                    </div>
 
                     <form class="form-horizontal form-label-left" ng-submit="submit()" novalidate>
 

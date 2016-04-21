@@ -3246,11 +3246,11 @@ html > body > .ui-pnotify {
 
 /* theming */
 
-.alert-success {
+/*.alert-success {
     color: #ffffff;
     background-color: rgba(38, 185, 154, 0.88);
     border-color: rgba(38, 185, 154, 0.88);
-}
+}*/
 .alert-info {
     color: #E9EDEF;
     background-color: rgba(52, 152, 219, 0.88);
@@ -3846,7 +3846,7 @@ ul.project_files li a i {
     margin-bottom: 5px;
 }
 .thumbnail {
-    height: 340px;
+    height: 240px;
     overflow: hidden;
 }
 .view {

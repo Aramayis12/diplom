@@ -1,32 +1,4 @@
 
-<div class="container">
-    <div>
-        <div class="alert alert-success"> <span class="label label-info">Star Rating: Read/Write</span>
-
-            <div star-rating rating="starRating1" read-only="false" max-rating="10" click="click1(param)" mouse-hover="mouseHover1(param)" mouse-leave="mouseLeave1(param)"></div>
-            <div> <span class="label label-primary">Star Rating: {{starRating1}}</span>
-                <span class="label label-primary">Hover Rating: {{hoverRating1}}</span>
-
-            </div>
-        </div>
-        <div class="alert alert-danger"> <span class="label label-info">Star Rating: ReadOnly</span>
-
-            <div star-rating rating="starRating2" read-only="true" max-rating="7" click="click2(param)" mouse-hover="mouseHover2(param)" mouse-leave="mouseLeave2(param)"></div>
-            <div> <span class="label label-primary">Star Rating: {{starRating2}}</span>
-                <span class="label label-primary">Hover Rating: {{hoverRating2}}</span>
-
-            </div>
-        </div>
-        <div class="alert alert-info"> <span class="label label-info">Star Rating: Read/Write(with default values for readOnly & maxRating)</span>
-
-            <div star-rating rating="starRating3" click="click3(param)" mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)"></div>
-            <div> <span class="label label-primary">Star Rating: {{starRating3}}</span>
-                <span class="label label-primary">Hover Rating: {{hoverRating3}}</span>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <div ui-view="formcontent" class=" "></div>
@@ -78,22 +50,21 @@
 
                         <p>Media gallery design emelents</p>
 
-                        <div class="col-md-55" ng-repeat="hotel in hotels | filter:searchText">
+                        <div class="col-md-55" ng-repeat="news in newsList | filter:searchText">
                             <div class="thumbnail">
                                 <div class="image view view-first">
-                                    <img style="width: 100%; display: block;" src="assets/imgs/hotel.jpg" alt="image" />
+                                    <img style="width: 100%; display: block;" ng-src="{{ news.image }}" alt="image" />
                                     <div class="mask">
-                                        <p>{{ hotel.name }}</p>
+                                        <p>{{ news.name }}</p>
                                         <div class="tools tools-bottom">
                                             <a href="#"><i class="fa fa-link"></i></a>
-                                            <a ui-sref="home.hotel.edit({id:hotel.id})"><i class="fa fa-pencil"></i></a>
+                                            <a ui-sref="home.hotel.edit({id:news.id})"><i class="fa fa-pencil"></i></a>
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="caption">
-                                    <p>{{ hotel.name }}</p>
-                                    <div star-rating rating="hotel.stars" read-only="true" max-rating="5" click="click2(param)" mouse-hover="mouseHover2(param)" mouse-leave="mouseLeave2(param)"></div>
+                                    <p>{{ news.name }}</p>
                                     <div class="ln_solid"></div>
                                 </div>
                             </div>
@@ -106,7 +77,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
 
                 </div>

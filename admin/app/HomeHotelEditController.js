@@ -1,5 +1,5 @@
-adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStorageService','$http','$stateParams',
-    function($scope,$location,localStorageService, $http, $stateParams) {
+adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStorageService','$http','$stateParams','$timeout',
+    function($scope,$location,localStorageService, $http, $stateParams, $timeout) {
 
 
     var isLoggedIn = localStorageService.get('loginSuccess');
@@ -36,6 +36,8 @@ adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStor
         return log[0];
     };
 
+    $scope.FormEditSuccess = false;
+
     $scope.list = {};
 
     $scope.submit = function() {
@@ -56,6 +58,10 @@ adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStor
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function( response ){
            console.log('response - ',response.data );
+            $scope.FormEditSuccess = true;
+            $timeout(function(){
+                $scope.FormEditSuccess = false;
+            },2000);
         }, function( response ){
 
         });

@@ -30,14 +30,23 @@ adminApp.config(function($stateProvider, $urlRouterProvider) {
                     controller: 'HomeHotelController'
                 }
             }
-        }).state('home.hotel.edit',{
+        })
+        .state('home.hotel.edit',{
         url:"/edit/:id",
-        views:{
+        views: {
             "formcontent": {
-                templateUrl:'views/form/hotel_form.html',
+                templateUrl: 'views/form/hotel_form.html',
                 controller: 'HomeHotelEditController'
             },
 
+        }
+        }).state('home.news',{
+        url:"/news",
+        views:{
+            "rightcontent": {
+                templateUrl:'views/home_news.html',
+                controller: 'HomeNewsController'
+            }
         }
     });
 

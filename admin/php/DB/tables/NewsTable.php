@@ -31,29 +31,27 @@ VALUES ( :name, :description, :image, :sea_id )
 
             $stmt = $db->prepare( $sql );
 
-            
+
             $stmt->bindValue( ':name', $data["name"], PDO::PARAM_STR );
             $stmt->bindValue( ':description', $data["description"], PDO::PARAM_STR );
             $stmt->bindValue( ':image', $file_path, PDO::PARAM_STR );
             $stmt->bindValue( ':sea_id', $data["sea_id"], PDO::PARAM_INT );
-            
+
 
             $stmt->execute();
-            $lastInsertId = $db->lastInsertId(); 
-            
+            $lastInsertId = $db->lastInsertId();
+
             return $lastInsertId;
         }
 
-        public static function selectNews( $id )
+        public static function selectNews()
         {
             $db = ConnectDB();
 
-            $sql = "SELECT * FROM " . self::getTableName() . " WHERE id=:id";
+            $sql = "SELECT * FROM " . self::getTableName();
             $stmt = $db->prepare( $sql );
-            $stmt->bindValue( ':id', $id, PDO::PARAM_INT );
-            $stmt->execute();
 
-            $i = 0;
+            $stmt->execute();
             $result = $stmt->fetchAll();
             
             return $result;
@@ -68,7 +66,7 @@ VALUES ( :name, :description, :image, :sea_id )
                 $image_update = ',image = :image';
             }
 
-            
+
 
             $sql = "
 UPDATE " . self::getTableName() . "
@@ -79,7 +77,7 @@ WHERE  id = :id";
 
             $stmt = $db->prepare( $sql );
 
-            
+
             $stmt->bindValue( ":id", $data->id, PDO::PARAM_INT );
             $stmt->bindValue( ":name", $data->name, PDO::PARAM_STR );
             $stmt->bindValue( ":description",$data->description, PDO::PARAM_STR );
