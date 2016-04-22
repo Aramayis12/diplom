@@ -23,7 +23,7 @@ if ( interface_exists( 'ConstructDB' ) ) {
         public static function insertNews(  $data )
         {
             $db = ConnectDB();
-           
+
             $sql = '
 INSERT INTO ' . self::getTableName() . ' ( name, description, sea_id, image )
 VALUES ( :name, :description, :sea_ID, :image )';

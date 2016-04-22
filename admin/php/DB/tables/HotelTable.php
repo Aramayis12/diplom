@@ -97,6 +97,36 @@ WHERE id = :hotel_ID';
             $stmt->execute();
 
         }
+
+        public static function insertHotel(  $data )
+        {
+            $db = ConnectDB();
+
+            $sql = '
+INSERT INTO ' . self::getTableName() . ' ( name, stars, description_hotel, sea_id, img_hotel_path )
+VALUES ( :hotel_name, :hotel_stars, :hotel_desc, :hotel_sea_ID, :img_path )';
+
+            $stmt = $db->prepare( $sql );
+
+
+            $stmt->bindValue( ':hotel_name', $data->hotel_name, PDO::PARAM_STR );
+            $stmt->bindValue( ':hotel_stars', (int) $data->hotel_stars, PDO::PARAM_INT );
+            $stmt->bindValue( ':hotel_desc', $data->hotel_desc, PDO::PARAM_STR );
+            $stmt->bindValue( ':hotel_sea_ID',  (int) $data->hotel_sea_ID, PDO::PARAM_INT );
+            $stmt->bindValue( ':img_path', $data->hotel_image, PDO::PARAM_STR );
+
+            $stmt->execute();
+            $lastInsertId = $db->lastInsertId();
+
+            return $lastInsertId;
+        }
+
+
+
+
+
+
+
     }
 }
 

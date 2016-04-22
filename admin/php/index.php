@@ -64,6 +64,18 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
     $data = json_decode( $_POST['data'] );
     $insert_id = NewsTable::insertNews( $data );
     echo $insert_id;
+} else if( $_GET['action'] == 'add' && $_GET['name'] == 'hotel'){
+    include('DB/tables/HotelTable.php');
+
+    $data = json_decode( $_POST['data'] );
+    $insert_id = HotelTable::insertHotel( $data );
+    echo $insert_id;
+} else if( $_GET['action'] == 'add' && $_GET['name'] == 'sea'){
+    include('DB/tables/SeaTable.php');
+
+    $data = json_decode( $_POST['data'] );
+    $insert_id = SeaTable::insertSea( $data );
+    echo $insert_id;
 }
 
 

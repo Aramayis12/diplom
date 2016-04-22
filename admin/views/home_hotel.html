@@ -81,7 +81,7 @@
                         <div class="col-md-55" ng-repeat="hotel in hotels | filter:searchText">
                             <div class="thumbnail">
                                 <div class="image view view-first">
-                                    <img style="width: 100%; display: block;" src="assets/imgs/hotel.jpg" alt="image" />
+                                    <img style="width: 100%; display: block;" ng-src="{{ hotel.img_hotel_path }}" alt="image" />
                                     <div class="mask">
                                         <p>{{ hotel.name }}</p>
                                         <div class="tools tools-bottom">
@@ -101,7 +101,7 @@
 
                         <div class="col-md-55">
                             <div class="thumbnail">
-                                <button type="button" class="btn btn-success button-add-item" aria-label="Left Align" >
+                                <button type="button" class="btn btn-success button-add-item" aria-label="Left Align" ui-sref="home.hotel.add">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                 </button>
                             </div>

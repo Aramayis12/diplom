@@ -1,4 +1,4 @@
-adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorageService','$http','$stateParams','$timeout',
+adminApp.controller('HomeHotelAddController', ['$scope','$location', 'localStorageService','$http','$stateParams','$timeout',
     function($scope,$location,localStorageService, $http, $stateParams, $timeout) {
 
 
@@ -12,7 +12,7 @@ adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorag
 
 
         $scope.seaOption = { id: 1, name: '' };
-        $scope.news = {};
+        $scope.hotel = {};
 
         var currentOption = function( id ){
             var log = [];
@@ -30,19 +30,21 @@ adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorag
         $scope.list = {};
 
         $scope.submit = function() {
-            console.log( 'tfhis - ', this);
+            console.log( 'this - ', this);
+            $scope.list.hotel_ID = this.hotel.hotel_ID;
+            $scope.list.hotel_desc = this.hotel.hotel_description;
+            $scope.list.hotel_name = this.hotel.hotel_name;
+            $scope.list.hotel_stars = this.hotel.hotel_stars;
+            $scope.list.hotel_sea_ID = this.selected.id;
+            $scope.list.hotel_image = 'assets/imgs/empty/hotel_empty.jpg';
 
-            $scope.list.news_desc = this.news.news_description;
-            $scope.list.news_name = this.news.news_name;
-            $scope.list.news_sea_ID = this.selected.id;
-            $scope.list.news_image = 'assets/imgs/empty/hotel_empty.jpg';
-
-            console.log('LIST - ', $scope.list);
+            console.log('LISTT - ', $scope.list);
             console.log('LIgSTt - ',JSON.stringify( $scope.list ));
+
 
             $http({
                 method: 'POST',
-                url: 'php/index.php?action=add&name=news',
+                url: 'php/index.php?action=add&name=hotel',
                 data: 'data=' + JSON.stringify( $scope.list ),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function( response ){

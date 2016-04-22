@@ -21,8 +21,16 @@ adminApp.config(function($stateProvider, $urlRouterProvider) {
                     controller: 'HomeSeaController'
                 }
             }
-        })
-        .state('home.hotel',{
+        }).state('home.sea.add',{
+            url:"/add",
+            views: {
+                "formcontent": {
+                    templateUrl: 'views/form/sea_form.html',
+                    controller: 'HomeSeaAddController'
+                },
+
+            }
+        }).state('home.hotel',{
             url:"/hotel",
             views:{
                 "rightcontent": {
@@ -40,14 +48,23 @@ adminApp.config(function($stateProvider, $urlRouterProvider) {
             },
 
         }
-        }).state('home.news',{
-        url:"/news",
-        views:{
-            "rightcontent": {
-                templateUrl:'views/home_news.html',
-                controller: 'HomeNewsController'
+        }).state('home.hotel.add',{
+            url:"/add",
+            views: {
+                "formcontent": {
+                    templateUrl: 'views/form/hotel_form.html',
+                    controller: 'HomeHotelAddController'
+                },
+
             }
-        }
+        }).state('home.news',{
+            url:"/news",
+            views:{
+                "rightcontent": {
+                    templateUrl:'views/home_news.html',
+                    controller: 'HomeNewsController'
+                }
+            }
         }).state('home.news.edit',{
             url:"/edit/:id",
             views: {
@@ -58,15 +75,15 @@ adminApp.config(function($stateProvider, $urlRouterProvider) {
 
             }
         }).state('home.news.add',{
-        url:"/add",
-        views: {
-            "formcontent": {
-                templateUrl: 'views/form/news_form.html',
-                controller: 'HomeNewsAddController'
-            },
+            url:"/add",
+            views: {
+                "formcontent": {
+                    templateUrl: 'views/form/news_form.html',
+                    controller: 'HomeNewsAddController'
+                },
 
-        }
-    });
+            }
+        });
 
 
 

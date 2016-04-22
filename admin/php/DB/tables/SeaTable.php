@@ -41,6 +41,34 @@ if (interface_exists('ConstructDB')) {
             return $result;
         }
 
+
+        public static function insertSea(  $data )
+        {
+            $db = ConnectDB();
+
+            $sql = '
+INSERT INTO ' . self::getTableName() . ' ( name, description, img_path )
+VALUES ( :name, :description, :image )';
+
+            $stmt = $db->prepare( $sql );
+
+
+            $stmt->bindValue( ':name', $data->name, PDO::PARAM_STR );
+            $stmt->bindValue( ':image', $data->image, PDO::PARAM_STR );
+            $stmt->bindValue( ':description', $data->description, PDO::PARAM_STR );
+
+
+            $stmt->execute();
+            $lastInsertId = $db->lastInsertId();
+
+            return $lastInsertId;
+        }
+
+
+
+
+
+
     }
 }
 
