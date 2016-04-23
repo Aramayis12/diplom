@@ -1,6 +1,5 @@
 <?php
 
-
 include('config.php');
 include('DB/ConnectDB.php');
 include('DB/ConstructDB.php');
@@ -76,7 +75,7 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
     $data = json_decode( $_POST['data'] );
     $insert_id = SeaTable::insertSea( $data );
     echo $insert_id;
-} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'sea'){
+} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'sea' && !isset( $_GET['file'] )){
     include('DB/tables/SeaTable.php');
 
     $data = json_decode( $_POST['data'] );
@@ -90,6 +89,14 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
         $result = SeaTable::getSeaFields( $id );
         echo json_encode( $result );
     }
+} else if ( $_GET['action'] == 'edit' && $_GET['name'] == 'sea' && isset( $_GET['file'] )){
+    include('library/uploadFiles.php');
+    include('DB/tables/SeaTable.php');
+
+
+    $name_file = UploadFiles::upload($_FILES['file'], $_POST['id']);
+    $result = SeaTable::updateSeaImage( $name_file, $_POST['id'] );
+
 }
 
 

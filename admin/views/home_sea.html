@@ -45,7 +45,7 @@
 
                     <div class="row">
 
-                        <p>Media gallery design emelents</p>
+                        <p>Media gallery design emelents {{fileUploadIs}}</p>
 
                         <div class="col-md-55" ng-repeat="sea in seas">
                             <div class="thumbnail">
@@ -62,6 +62,13 @@
                                 </div>
                                 <div class="caption">
                                     <p>Snow and Ice Incoming for the South {{sea.id}}</p>
+                                    <button ng-click="selectFile( sea.id )" ng-hide="fileUploadIs_{{sea.id}}">Upload Your File</button>
+                                    <input type="file" style="display:none" ng-attr-id="{{ 'file_' + sea.id }}"
+                                           name='file' onchange="angular.element(this).scope().fileNameChanged( this.files, this.getAttribute('id') )" />
+                                </div>
+                                <div class="caption" ng-if="fileUploadIs == sea.id ">
+                                    <button type="button" class="btn btn-round btn-danger" ng-click="fileUpload( sea.id )">Upload</button>
+                                    <button type="button" class="btn btn-round btn-primary">Cancel</button>
                                 </div>
                             </div>
                         </div>

@@ -91,6 +91,25 @@ WHERE id = :id';
             return $result;
         }
 
+        public static function  updateSeaImage($image, $id){
+            $db = ConnectDB();
+
+            $sql = '
+UPDATE ' . self::getTableName() . ' SET
+   img_path = :image
+WHERE id = :id';
+
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue( ':image', $image, PDO::PARAM_STR );
+            $stmt->bindValue( ':id', (int) $id, PDO::PARAM_INT );
+
+            $stmt->execute();
+            $lastInsertId = $db->lastInsertId();
+
+            return $lastInsertId;
+        }
+
 
 
 
