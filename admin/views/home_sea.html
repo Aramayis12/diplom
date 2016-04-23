@@ -55,13 +55,13 @@
                                         <p>{{ sea.name }}</p>
                                         <div class="tools tools-bottom">
                                             <a href="#"><i class="fa fa-link"></i></a>
-                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a ui-sref="home.sea.edit({ id: sea.id })"><i class="fa fa-pencil"></i></a>
                                             <a href="#"><i class="fa fa-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="caption">
-                                    <p>Snow and Ice Incoming for the South</p>
+                                    <p>Snow and Ice Incoming for the South {{sea.id}}</p>
                                 </div>
                             </div>
                         </div>

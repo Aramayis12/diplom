@@ -19,21 +19,12 @@ if (interface_exists('ConstructDB')) {
             return self::$tableFields;
         }
 
-        public static function  getSeasFields( $id = null ){
+        public static function  getSeasFields(){
 
             $db = ConnectDB();
 
-            $where = '1 = 1';
-            if( $id != null) {
-                $where = 'id = :id';
-            }
-
-            $sql = 'SELECT * FROM ' . self::getTableName() . ' WHERE ' . $where;
+            $sql = 'SELECT * FROM ' . self::getTableName();
             $stmt = $db->prepare($sql);
-
-            if( $id != null) {
-                $stmt->bindValue( ':id', $id, PDO::PARAM_INT );
-            }
 
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -62,6 +53,42 @@ VALUES ( :name, :description, :image )';
             $lastInsertId = $db->lastInsertId();
 
             return $lastInsertId;
+        }
+
+        public function updateSeaFields( $data ){
+            $db = ConnectDB();
+
+            $sql = '
+UPDATE ' . self::getTableName() . ' SET
+    name = :sea_name,
+    description = :sea_desc
+WHERE id = :id';
+
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue( ':sea_name', $data->name, PDO::PARAM_STR );
+            $stmt->bindValue( ':sea_desc', $data->description, PDO::PARAM_STR );
+            $stmt->bindValue( ':id', (int) $data->id, PDO::PARAM_INT );
+
+            $stmt->execute();
+            $lastInsertId = $db->lastInsertId();
+
+            return $lastInsertId;
+        }
+
+        public static function  getSeaFields( $id ){
+
+            $db = ConnectDB();
+
+            $sql = 'SELECT * FROM ' . self::getTableName() . ' WHERE id=:id';
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue( ':id', $id, PDO::PARAM_INT );
+
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+
+            return $result;
         }
 
 

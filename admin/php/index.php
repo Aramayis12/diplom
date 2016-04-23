@@ -76,6 +76,20 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
     $data = json_decode( $_POST['data'] );
     $insert_id = SeaTable::insertSea( $data );
     echo $insert_id;
+} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'sea'){
+    include('DB/tables/SeaTable.php');
+
+    $data = json_decode( $_POST['data'] );
+    $result = SeaTable::updateSeaFields( $data );
+    echo $result;
+} else if( $_GET['action'] == 'get' && $_GET['name'] == 'sea'){
+    include('DB/tables/SeaTable.php');
+
+    if( $_POST['id'] ){
+        $id = $_POST['id'];
+        $result = SeaTable::getSeaFields( $id );
+        echo json_encode( $result );
+    }
 }
 
 

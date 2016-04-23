@@ -30,6 +30,15 @@ adminApp.config(function($stateProvider, $urlRouterProvider) {
                 },
 
             }
+        }).state('home.sea.edit',{
+            url:"/edit/:id",
+            views: {
+                "formcontent": {
+                    templateUrl: 'views/form/sea_form.html',
+                    controller: 'HomeSeaEditController'
+                },
+
+            }
         }).state('home.hotel',{
             url:"/hotel",
             views:{
