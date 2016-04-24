@@ -72,4 +72,8 @@ myApp.config(function($routeProvider,localStorageServiceProvider) {
             templateUrl:'views/post.html',
             controller:'SeaAboutController'
         })
+        .when('/hotel/post/:id',{
+            templateUrl:'views/hotel_post.html',
+            controller:'HotelPostController'
+        })
 });

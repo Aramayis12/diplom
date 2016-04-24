@@ -37,4 +37,11 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'news' )
 	$news = NewsTable::getNews();
 	echo json_encode( $news );
 }
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' )
+{
+	include('DB/tables/HotelTable.php');
+
+	$news = HotelTable::getHotels();
+	echo json_encode( $news );
+}
 

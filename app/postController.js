@@ -1,32 +1,19 @@
-myApp.controller('PostController', ['$scope', '$location', '$routeParams','localStorageService',  function($scope, $location,  $routeParams, localStorageService) {
+myApp.controller('PostController', ['$scope', '$location', '$routeParams','localStorageService','$http',
+    function($scope, $location,  $routeParams, localStorageService, $http) {
     console.log('PostController');
 
     $scope.postID = $routeParams.id;
 
-
-
-    if(localStorageService.get('seas') === null){
-        $http({
-            method : "GET",
-            url : "php/index.php?name=news"
-        }).then(function mySucces(response) {
-            var data = filterSea( response.data );
-            $scope.item = data[0];
-            setValues( response.data );
-        }, function myError(response) {
-
-        });
-    } else {
-        var data = filterSea( localStorageService.get('seas') );
+    $http({
+        method : "GET",
+        url : "php/index.php?name=news"
+    }).then(function mySucces(response) {
+        var data = filterSea( response.data );
         $scope.item = data[0];
-    }
+        $scope.items = response.data;
+    }, function myError(response) {
 
-    function setValues( data ){
-        if(localStorageService.isSupported) {
-            localStorageService.set('seas', data);
-            $scope.items = localStorageService.get('seas');
-        }
-    }
+    });
 
     function filterSea( data ){
 

@@ -30,22 +30,16 @@ myApp.controller('HomeController', ['$scope','$http','$anchorScroll','localStora
 
     $scope.items = {};
 
-    console.log('local seas -> ', localStorageService.get('seas'))
+    $http({
+        method : "GET",
+        url : "php/index.php?name=news"
+    }).then(function mySucces(response) {
+        $scope.items =  response.data;
+        pagination( response.data );
+    }, function myError(response) {
 
-    if(localStorageService.get('seas') === null){
-        $http({
-            method : "GET",
-            url : "php/index.php?name=news"
-        }).then(function mySucces(response) {
-            setValues( response.data );
-            pagination( response.data );
-        }, function myError(response) {
+    });
 
-        });
-    } else {
-        $scope.items = localStorageService.get('seas');
-        pagination( localStorageService.get('seas') );
-    }
 
     function pagination( data ){
         var pageCount = parseInt( ( data.length + 3 ) / $scope.pageSize );
@@ -54,13 +48,6 @@ myApp.controller('HomeController', ['$scope','$http','$anchorScroll','localStora
         for( var i = 0; i < pageCount; i++ )
         {
             $scope.pageCount[i] = i;
-        }
-    }
-
-    function setValues( data ){
-        if(localStorageService.isSupported) {
-            localStorageService.set('seas', data);
-            $scope.items = localStorageService.get('seas');
         }
     }
 

@@ -30,9 +30,56 @@
             </ul>
         </div>
     </pane>
+
+
+
+
+
     <pane title="Hotels">
-        Hotel
+
+        <div id="hotels" class="top-buffer" ng-controller="SeaHotelTabController">
+            <h2>Count <span class="badge ng-binding">{{ items.length }}</span></h2>
+            <div ng-repeat="item in items  | filter:itemsList">
+                <div class="row">
+                    <div class="col-sm-4"><a ng-href="#/hotel/post/{{item.id}}" class=""><img ng-src="admin/{{ item.img_hotel_path }}" class="img-responsive"></a>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3 class="title">{{ item.name }}</h3>
+                        <p class="text-muted"><span class="glyphicon glyphicon-lock"></span>Available Exclusively for Premium Members</p>
+                        <p>{{ item.description | limitTo:200 }} ...</p>
+
+                        <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
+
+                        <ul class="list-inline">
+                            <li><a href="#">2 Days Ago</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-comment">
+                            </i> 4 Comments</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li>
+                        </ul>
+
+                        <br /><p class="text-muted">Presented by <a href="#">Ellen Richey</a></p>
+                    </div>
+                </div>
+
+                <hr>
+            </div>
+
+
+            <ul class="pagination pagination-lg pull-right">
+                <li ><a ng-href="#{{ url }}">«</a></li>
+                <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a ng-href="#{{ url }}">{{ page + 1 }}</a></li>
+                <li ng-click="pageToNext()"><a ng-href="#{{ url }}">»</a></li>
+            </ul>
+        </div>
+
     </pane>
+
+
+
+
+
+
+
     <pane title="About">
 
         <article class="blog-post top-buffer" ng-controller="SeaAboutTabController">

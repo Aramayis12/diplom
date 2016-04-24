@@ -20,6 +20,18 @@ if (interface_exists('ConstructDB')) {
         {
             return self::$tableFields;
         }
+
+        static public function getHotels(){
+            $db = ConnectDB();
+
+            $sql = 'SELECT * FROM ' . self::getTableName();
+            $stmt = $db->prepare($sql);
+
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+
+            return $result;
+        }
     }
 }
 

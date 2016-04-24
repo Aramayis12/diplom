@@ -40,6 +40,10 @@ adminApp.controller('HomeSeaController', ['$scope','$location', 'localStorageSer
         $scope.$apply();
     }
 
+    $scope.cancelUpload = function(){
+        $scope.fileUploadIs = 0;
+    }
+
     $scope.fileUpload = function( id ){
         console.log("select id ", id);
         console.log("select file ", $scope.currentFile);

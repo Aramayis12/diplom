@@ -64,8 +64,14 @@
                                     </div>
                                 </div>
                                 <div class="caption">
-                                    <p>{{ news.name }}</p>
-                                    <div class="ln_solid"></div>
+                                    <p>{{news.name}} fff</p>
+                                    <button ng-click="selectFile( news.id )" ng-hide="fileUploadIs_{{news.id}}">Upload Your File</button>
+                                    <input type="file" style="display:none" ng-attr-id="{{ 'file_' + news.id }}"
+                                           name='file' onchange="angular.element(this).scope().fileNameChanged( this.files, this.getAttribute('id') )" />
+                                </div>
+                                <div class="caption" ng-if="fileUploadIs == news.id ">
+                                    <button type="button" class="btn btn-round btn-danger" ng-click="fileUpload( news.id )">Upload</button>
+                                    <button type="button" class="btn btn-round btn-primary" ng-click="cancelUpload()">Cancel</button>
                                 </div>
                             </div>
                         </div>

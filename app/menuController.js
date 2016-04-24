@@ -2,24 +2,14 @@ myApp.controller('MenuController', ['$scope','$location','$http','localStorageSe
 
     $scope.menu = {};
 
-    if(localStorageService.get('menu') === null){
-        $http({
-            method : "GET",
-            url : "php/index.php?name=seas"
-        }).then(function mySucces(response) {
-            setValues( response.data );
-        }, function myError(response) {
 
-        });
-    } else {
-        $scope.menu = localStorageService.get('menu');
-    }
+    $http({
+        method : "GET",
+        url : "php/index.php?name=seas"
+    }).then(function mySucces(response) {
+        $scope.menu = response.data;
+    }, function myError(response) {
 
-    function setValues( data ){
-        if(localStorageService.isSupported) {
-           localStorageService.set('menu', data);
-           $scope.menu = localStorageService.get('menu');
-        }
-    }
+    });
 
 }])
