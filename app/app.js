@@ -1,1 +1,1 @@
-var myApp = angular.module('guestApp',['ngRoute','LocalStorageModule']);
+var myApp = angular.module('guestApp',['ngRoute','LocalStorageModule','ngMap']);

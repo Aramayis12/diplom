@@ -44,4 +44,21 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' )
 	$news = HotelTable::getHotels();
 	echo json_encode( $news );
 }
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['action'] ) && $_GET['action'] == 'add')
+{
+	include('DB/tables/CommentTable.php');
+
+	$data = json_decode( $_POST["data"] );
+	$result = CommentTable::insertComment( $data );
+	echo json_encode( $result );
+}
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['action'] ) && $_GET['action'] == 'get')
+{
+	include('DB/tables/CommentTable.php');
+
+	$data = json_decode( $_POST["data"] );
+	
+	$result = CommentTable::getComment( $data );
+	echo json_encode( $result );
+}
 

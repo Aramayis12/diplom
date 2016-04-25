@@ -50,10 +50,11 @@
 
 myApp.config(function($routeProvider,localStorageServiceProvider) {
 
+
     localStorageServiceProvider
         .setPrefix('myApp')
         .setStorageType('sessionStorage')
-        .setNotify(true, true)
+        .setNotify(true, true);
 
     $routeProvider
         .when('/', {
