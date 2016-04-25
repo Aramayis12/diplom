@@ -93,12 +93,12 @@
                                 </div>
                                 <div class="caption">
                                     <p>{{hotel.name}}</p>
-                                    <button ng-click="selectFile( sea.id )" ng-hide="fileUploadIs_{{sea.id}}">Upload Your File</button>
-                                    <input type="file" style="display:none" ng-attr-id="{{ 'file_' + sea.id }}"
+                                    <button ng-click="selectFile( hotel.id )" ng-hide="fileUploadIs_{{hotel.id}}">Upload Your File</button>
+                                    <input type="file" style="display:none" ng-attr-id="{{ 'file_' + hotel.id }}"
                                            name='file' onchange="angular.element(this).scope().fileNameChanged( this.files, this.getAttribute('id') )" />
                                 </div>
-                                <div class="caption" ng-if="fileUploadIs == sea.id ">
-                                    <button type="button" class="btn btn-round btn-danger" ng-click="fileUpload( sea.id )">Upload</button>
+                                <div class="caption" ng-if="fileUploadIs == hotel.id ">
+                                    <button type="button" class="btn btn-round btn-danger" ng-click="fileUpload( hotel.id )">Upload</button>
                                     <button type="button" class="btn btn-round btn-primary" ng-click="cancelUpload()">Cancel</button>
                                 </div>
                             </div>

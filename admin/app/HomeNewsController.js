@@ -43,6 +43,8 @@ adminApp.controller('HomeNewsController', ['$scope','$location', 'localStorageSe
         });
 
         $scope.selectFile = function( id ){
+            console.log("id = ", id);
+            console.log("file = ", $("#file_"+id));
             $("#file_"+id).click();
         };
 

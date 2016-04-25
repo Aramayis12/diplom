@@ -33,7 +33,7 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
 
     // sharunakeli
 
-} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'hotel'){
+} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'hotel' && !isset( $_GET['file'] )){
     include('DB/tables/HotelTable.php');
 
     $data = json_decode( $_POST['data'] );
@@ -96,6 +96,14 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
 
     $name_file = UploadFiles::upload($_FILES['file'], $_POST['id']);
     $result = SeaTable::updateSeaImage( $name_file, $_POST['id'] );
+
+} else if ( $_GET['action'] == 'edit' && $_GET['name'] == 'hotel' && isset( $_GET['file'] )){
+    include('library/uploadFiles.php');
+    include('DB/tables/HotelTable.php');
+
+
+    $name_file = UploadFiles::upload($_FILES['file'], 'hotel_' . $_POST['id']);
+    $result = HotelTable::updateHotelImage( $name_file, $_POST['id'] );
 
 }
 

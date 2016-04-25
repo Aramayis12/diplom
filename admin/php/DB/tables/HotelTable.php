@@ -121,6 +121,25 @@ VALUES ( :hotel_name, :hotel_stars, :hotel_desc, :hotel_sea_ID, :img_path )';
             return $lastInsertId;
         }
 
+        public static function  updateHotelImage($image, $id){
+            $db = ConnectDB();
+
+            $sql = '
+UPDATE ' . self::getTableName() . ' SET
+   img_hotel_path = :image
+WHERE id = :id';
+
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue( ':image', $image, PDO::PARAM_STR );
+            $stmt->bindValue( ':id', (int) $id, PDO::PARAM_INT );
+
+            $stmt->execute();
+            $lastInsertId = $db->lastInsertId();
+
+            return $lastInsertId;
+        }
+
 
 
 
