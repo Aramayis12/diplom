@@ -529,7 +529,6 @@ span.table-caption
 }
 .basic-grey select {
     background: #FFF url('down-arrow.png') no-repeat right;
-    background: #FFF url('down-arrow.png') no-repeat right);
     appearance:none;
     -webkit-appearance:none; 
     -moz-appearance: none;
@@ -539,6 +538,7 @@ span.table-caption
     height: 35px;
     line-height: 25px;
 }
+
 .basic-grey textarea{
     height:100px;
 }
@@ -558,3 +558,9 @@ span.table-caption
 
 /* Comment Form End */
 
+/* Rating style */
+
+.glyphicon-star, .glyphicon-star-empty {
+    color: #A5881C;
+    font-size: 24px;
+}

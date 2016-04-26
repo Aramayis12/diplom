@@ -1,33 +1,26 @@
 myApp.controller('SeaHotelTabController', ['$scope', '$location', '$routeParams','localStorageService','$http','$anchorScroll',
     function($scope, $location,  $routeParams, localStorageService, $http, $anchorScroll) {
         console.log('SeaHotelTabController ', $routeParams);
+        console.log('sea_id = ', $routeParams.id);
 
+        var params = {
+            sea_id : $routeParams.id
+        };
+
+        console.log("Params - ", JSON.stringify( params ));
 
         $http({
-            method : "GET",
-            url : "php/index.php?name=hotels"
-        }).then(function mySucces(response) {
-            console.log(response.data);
-            $scope.items = filterSea( response.data ) ;
+            method : "POST",
+            url : "php/index.php?name=hotels&join=comment",
+            data: 'data=' + JSON.stringify( params ),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function mySuccess(response) {
+            $scope.items = response.data;
             console.log("Sea hotels - ", $scope.items);
             pagination( $scope.items );
         }, function myError(response) {
 
         });
-
-
-
-        function filterSea( data ){
-
-            var log = [];
-            angular.forEach( data ,function(value,key){
-                if( value.sea_id === $routeParams.id ){
-                    this.push(value);
-                }
-            },log);
-
-            return log;
-        }
 
         $scope.currentPage = 1;
         $scope.pageSize = 4;
@@ -59,7 +52,9 @@ myApp.controller('SeaHotelTabController', ['$scope', '$location', '$routeParams'
             var end =  $scope.currentPage *  $scope.pageSize;
 
             if( index >=start && index < end ){
-                return tags;
+                return true;
+            } else {
+                return false;
             }
         };
 

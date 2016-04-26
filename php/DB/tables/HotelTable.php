@@ -32,6 +32,31 @@ if (interface_exists('ConstructDB')) {
 
             return $result;
         }
+
+        public static function  getHotelsWithComment( $data )
+        {
+            $db = ConnectDB();
+
+            $sql = '
+SELECT
+    h.*,
+    COUNT(c.id) as comments_count,
+    c.cat as category
+  FROM ' . self::getTableName() . ' AS h
+    LEFT JOIN
+       ' . CommentTable::getTableName() . ' AS c
+        ON h.id = c.post_id AND c.cat = "hotel"
+  WHERE h.sea_id=:sea_id GROUP BY h.id';
+
+            $stmt = $db->prepare( $sql );
+            $stmt->bindValue( ':sea_id', $data->sea_id, PDO::PARAM_INT );
+
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+            return $result;
+        }
+
+
     }
 }
 

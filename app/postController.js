@@ -18,7 +18,7 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
     function filterSea( data ){
 
         var log = [];
-        angular.forEach( data ,function(value,key){
+        angular.forEach( data ,function(value){
             if( value.id === $routeParams.id ){
                 this.push(value);
             }

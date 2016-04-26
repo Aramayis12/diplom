@@ -10,28 +10,29 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
 
     $scope.items = {};
 
+    var params = {
+        sea_id : $routeParams.id
+    };
 
-    if(localStorageService.get('seas') === null){
-        $http({
-            method : "GET",
-            url : "php/index.php?name=news"
-        }).then(function mySucces(response) {
-            setValues( response.data );
-            var data = filterSea( response.data );
-            $scope.items = data;
-            pagination( data );
-        }, function myError(response) {
+    console.log("Params - ", JSON.stringify( params ));
 
-        });
-    } else {
-        var data = filterSea( localStorageService.get('seas') );
-        $scope.items = data;
-        pagination( data );
-    }
+    $http({
+        method : "POST",
+        url : "php/index.php?name=news&join=comment",
+        data: 'data=' + JSON.stringify( params ),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function mySuccess(response) {
+        console.log("==================> ", response.data);
+        $scope.items = response.data;
+        pagination( response.data );
+    }, function myError(response) {
+
+    });
+
 
     function filterSea( data ){
         var log = [];
-        angular.forEach( data ,function(value,key){
+        angular.forEach( data ,function(value){
             if( value.sea_id === $routeParams.id ){
                 this.push(value);
             }
@@ -39,20 +40,12 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
         return log;
     }
 
-    function pagination( data ){
-        var pageCount = parseInt( ( data.length + 3 ) / $scope.pageSize );
+    function pagination( data ) {
+        var pageCount = parseInt(( data.length + 3 ) / $scope.pageSize);
 
         $scope.pageCount = [];
-        for( var i = 0; i < pageCount; i++ )
-        {
+        for (var i = 0; i < pageCount; i++) {
             $scope.pageCount[i] = i;
-        }
-    }
-
-    function setValues( data ){
-        if(localStorageService.isSupported) {
-            localStorageService.set('seas', data);
-            $scope.items = localStorageService.get('seas');
         }
     }
 
@@ -72,11 +65,14 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
     };
 
     $scope.itemsList = function(tags, index){
+
         var start =  $scope.pageSize * ( $scope.currentPage - 1 );
         var end =  $scope.currentPage *  $scope.pageSize;
 
         if( index >=start && index < end ){
-            return tags;
+            return true;
+        } else {
+            return false;
         }
     };
 

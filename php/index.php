@@ -30,14 +30,14 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'seas')
 	$seas = SeaTable::getSeasFields();
 	echo json_encode( $seas );
 }
-else if( isset( $_GET['name'] ) && $_GET['name'] == 'news' )
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'news' && !isset( $_GET['join'] ) )
 {
 	include('DB/tables/NewsTable.php');
 
 	$news = NewsTable::getNews();
 	echo json_encode( $news );
 }
-else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' )
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' && !isset($_GET['join']))
 {
 	include('DB/tables/HotelTable.php');
 
@@ -61,4 +61,21 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['a
 	$result = CommentTable::getComment( $data );
 	echo json_encode( $result );
 }
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'news' && isset( $_GET['join'] ) && $_GET['join'] == 'comment' )
+{
+	include('DB/tables/NewsTable.php');
+	include('DB/tables/CommentTable.php');
 
+	$data = json_decode( $_POST['data'] );
+	$news = NewsTable::getNewsWithComment( $data );
+	echo json_encode( $news );
+}
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' && isset( $_GET['join'] ) && $_GET['join'] == 'comment')
+{
+	include('DB/tables/HotelTable.php');
+	include('DB/tables/CommentTable.php');
+
+	$data = json_decode( $_POST['data'] );
+	$result = HotelTable::getHotelsWithComment( $data );
+	echo json_encode( $result );
+}

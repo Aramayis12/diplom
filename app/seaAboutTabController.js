@@ -15,7 +15,7 @@ myApp.controller('SeaAboutTabController', ['$scope', '$location', '$routeParams'
 
 
     function filterSea( data ){
-        angular.forEach( data ,function(value,key){
+        angular.forEach( data ,function(value){
             if( value.id === $routeParams.id ){
                 $scope.item = value;
             }

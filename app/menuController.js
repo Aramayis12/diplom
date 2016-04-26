@@ -1,5 +1,5 @@
 myApp.controller('MenuController', ['$scope','$location','$http','localStorageService',  function($scope, $location, $http,localStorageService) {
-
+    console.log("Menu Controller");
     $scope.menu = {};
 
 

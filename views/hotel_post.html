@@ -8,9 +8,14 @@
         <h2><a href="post.html">{{ item.name }}</a></h2>
 
 
-        {{starRating2}}
-        <div star-rating rating="starRating2" read-only="true" max-rating="5" click="click2(param)" mouse-hover="mouseHover2(param)" mouse-leave="mouseLeave2(param)">
-        </div><br />
+
+
+
+        <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+        <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+        <hr />
+
+
             
    
 

@@ -16,7 +16,7 @@ adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorag
 
         var currentOption = function( id ){
             var log = [];
-            angular.forEach( $scope.seas ,function(value,key){
+            angular.forEach( $scope.seas ,function(value){
                 if( value.id === id ){
                     this.push(value);
                 }

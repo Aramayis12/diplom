@@ -14,7 +14,11 @@
                         <p>{{ item.description | limitTo:200 }} ...</p>
 
                         <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p>
-                        <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 Comments</a></li><li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li></ul>
+                        <ul class="list-inline">
+                            <li><a href="#">2 Days Ago</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-comment"></i> {{ item.comments_count }} Comments</a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li>
+                        </ul>
                         <br /><p class="text-muted">Presented by <a href="#">Ellen Richey</a></p>
                     </div>
                 </div>
@@ -38,6 +42,7 @@
     <pane title="Hotels">
 
         <div id="hotels" class="top-buffer" ng-controller="SeaHotelTabController">
+            <!--<pre>{{items}}</pre>-->
             <h2>Count <span class="badge ng-binding">{{ items.length }}</span></h2>
             <div ng-repeat="item in items  | filter:itemsList">
                 <div class="row">
@@ -53,7 +58,7 @@
                         <ul class="list-inline">
                             <li><a href="#">2 Days Ago</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-comment">
-                            </i> 4 Comments</a></li>
+                            </i> {{item.comments_count}} Comments</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 Shares</a></li>
                         </ul>
 
@@ -114,31 +119,74 @@
 
             </div>
 
-            <div class="custom-panel comic-panel">
-                <div class="custom-panel-title">
-                    <h4>A simple Bootstrap component: Navigation</h4>
-                </div>
-                <div class="custom-panel-body">
-                    <p class="comicchar-holder">
-                        <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
-                    </p>
-                    <p class="comment-text">
-                        To create a navigation component you have to use following HTML markup with the shown CSS classes.
-                    </p>
-                </div>
+            <form class="basic-grey" ng-submit="commentForm()">
+                <h1>Contact Form
+                    <span>Please fill all the texts in the fields.</span>
+                </h1>
+                <label>
+                    <span>Your Name :</span>
+                    <input id="name" type="text" ng-model="comment.name" placeholder="Your Full Name" />
+                </label>
+
+                <label>
+                    <span>Your Email :</span>
+                    <input id="email" type="email" ng-model="comment.email" placeholder="Valid Email Address" />
+                </label>
+
+                <label>
+                    <span>Message :</span>
+                    <textarea id="message" ng-model="comment.message" placeholder="Your Message to Us"></textarea>
+                </label>
+
+                <!--
+                    <label>
+                       <span>Subject :</span><select name="selection" ng-model="comment.selection">
+                       <option value="Job Inquiry">Job Inquiry</option>
+                       <option value="General Question">General Question</option>
+                       </select>
+                    </label>
+                -->
+
+                <label>
+                    <span>&nbsp;</span>
+                    <input type="submit" class="button" value="Send" />
+                </label>
+            </form>
+
+            <div class="alert alert-success" ng-show="FormEditSuccess">
+                <strong>Success!</strong> Indicates a successful or positive action.
             </div>
 
-            <div class="custom-panel comic-panel" style="float: right;">
-                <div class="custom-panel-title">
-                    <h4>A simple Bootstrap component: Navigation</h4>
+            <br />
+
+            <!-- <pre>{{comments}}</pre> -->
+            <div id="comment" ng-repeat="item in comments">
+                <div class="custom-panel comic-panel" style="width:90%" ng-if="$even">
+                    <div class="custom-panel-title">
+                        <h4>{{item.name}}</h4>
+                    </div>
+                    <div class="custom-panel-body">
+                        <p class="comicchar-holder">
+                            <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
+                        </p>
+                        <p class="comment-text">
+                            {{item.message}}
+                        </p>
+                    </div>
                 </div>
-                <div class="custom-panel-body">
-                    <p class="comicchar-holder" style="float: right;">
-                        <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
-                    </p>
-                    <p class="comment-text">
-                        To create a navigation component you have to use following HTML markup with the shown CSS classes.
-                    </p>
+
+                <div class="custom-panel comic-panel" style="float: right;text-align:right;width:90%" ng-if="$odd">
+                    <div class="custom-panel-title">
+                        <h4>{{item.name}}</h4>
+                    </div>
+                    <div class="custom-panel-body">
+                        <p class="comicchar-holder" style="float: right;">
+                            <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
+                        </p>
+                        <p class="comment-text" style="">
+                            {{item.message}}
+                        </p>
+                    </div>
                 </div>
             </div>
 

@@ -1,11 +1,12 @@
-<div ng-repeat="item in items  | filter:itemsList">
+<div ng-repeat="item in items | filter:itemsList ">
+
   <div class="row">
     <div class="col-sm-4"><a ng-href="#/news/post/{{item.id}}" class=""><img ng-src="admin/{{ item.image }}" class="img-responsive"></a>
     </div>
     <div class="col-sm-8">
       <h3 class="title">{{ item.name }}</h3>
       <p class="text-muted"><span class="glyphicon glyphicon-lock"></span>Available Exclusively for Premium Members</p>
-      <p>{{ item.description | limitTo:200 }} ...</p>
+        <p>{{ item.description | limitTo:200 }} ...</p>
 
 
         <p class="pull-right">
@@ -31,5 +32,5 @@
 <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a href="#/">{{ page + 1 }}</a></li>
 <li ng-click="pageToNext()"><a href="#/">»</a></li>
 </ul>
-			
-			      
+
+

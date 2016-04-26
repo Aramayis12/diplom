@@ -33,5 +33,32 @@ if (interface_exists('ConstructDB')) {
             return $result;
         }
 
+        public static function  getNewsWithComment( $data )
+        {
+            $db = ConnectDB();
+
+            $sql = '
+SELECT
+    n.*,
+    COUNT(c.id) as comments_count,
+    c.cat as category
+  FROM ' . self::getTableName() . ' AS n
+    LEFT JOIN
+       ' . CommentTable::getTableName() . ' AS c
+        ON n.id = c.post_id AND c.cat = "news"
+  WHERE n.sea_id=:sea_id GROUP BY n.id';
+
+            $stmt = $db->prepare( $sql );
+            $stmt->bindValue( ':sea_id', $data->sea_id, PDO::PARAM_INT );
+
+            $stmt->execute();
+
+            $result = $stmt->fetchAll();
+            return $result;
+        }
+
+
+
+
     }
 }
