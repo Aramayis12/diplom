@@ -44,7 +44,7 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' && !isset($_GET['jo
 	$news = HotelTable::getHotels();
 	echo json_encode( $news );
 }
-else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['action'] ) && $_GET['action'] == 'add')
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['action'] ) && $_GET['action'] == 'add' && isset( $_GET['cat'] ) && $_GET['cat'] == 'hotel')
 {
 	include('DB/tables/CommentTable.php');
 
@@ -77,5 +77,13 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'hotels' && isset( $_GET['jo
 
 	$data = json_decode( $_POST['data'] );
 	$result = HotelTable::getHotelsWithComment( $data );
+	echo json_encode( $result );
+}
+else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['action'] ) && $_GET['action'] == 'add' && isset( $_GET['cat'] ) && $_GET['cat'] == 'news')
+{
+	include('DB/tables/CommentTable.php');
+
+	$data = json_decode( $_POST["data"] );
+	$result = CommentTable::insertComment( $data );
 	echo json_encode( $result );
 }

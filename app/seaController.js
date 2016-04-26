@@ -29,17 +29,6 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
 
     });
 
-
-    function filterSea( data ){
-        var log = [];
-        angular.forEach( data ,function(value){
-            if( value.sea_id === $routeParams.id ){
-                this.push(value);
-            }
-        },log);
-        return log;
-    }
-
     function pagination( data ) {
         var pageCount = parseInt(( data.length + 3 ) / $scope.pageSize);
 
@@ -75,6 +64,8 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
             return false;
         }
     };
+
+
 
 
 }])

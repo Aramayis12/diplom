@@ -84,7 +84,7 @@ myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','
 
             $http({
                 method: 'POST',
-                url: 'php/index.php?action=add&name=comment',
+                url: 'php/index.php?action=add&name=comment&cat=hotel',
                 data: 'data=' + JSON.stringify( $scope.comment ),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function( response ){

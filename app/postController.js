@@ -1,5 +1,5 @@
-myApp.controller('PostController', ['$scope', '$location', '$routeParams','localStorageService','$http',
-    function($scope, $location,  $routeParams, localStorageService, $http) {
+myApp.controller('PostController', ['$scope', '$location', '$routeParams','localStorageService','$http','$timeout',
+    function($scope, $location,  $routeParams, localStorageService, $http, $timeout) {
     console.log('PostController');
 
     $scope.postID = $routeParams.id;
@@ -25,6 +25,32 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
         },log);
 
         return log;
+    }
+
+    $scope.comment={};
+
+    $scope.commentForm = function(){
+        $scope.comment.cat = 'news';
+        $scope.comment.post_id = $routeParams.id;
+
+        console.log("Comment - ", $scope.comment);
+
+        $http({
+        method: 'POST',
+            url: 'php/index.php?action=add&name=comment&cat=news',
+            data: 'data=' + JSON.stringify( $scope.comment ),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function( response ){
+            console.log('response - ',response.data );
+            $scope.FormEditSuccess = true;
+            $timeout(function(){
+                $scope.FormEditSuccess = false;
+            },2000);
+            // getComments();
+            $scope.comment = {};
+        }, function( response ){
+
+        });
     }
 
 
