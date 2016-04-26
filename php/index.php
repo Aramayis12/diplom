@@ -59,6 +59,7 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['a
 	$data = json_decode( $_POST["data"] );
 	
 	$result = CommentTable::getComment( $data );
+
 	echo json_encode( $result );
 }
 else if( isset( $_GET['name'] ) && $_GET['name'] == 'news' && isset( $_GET['join'] ) && $_GET['join'] == 'comment' )
@@ -85,5 +86,6 @@ else if( isset( $_GET['name'] ) && $_GET['name'] == 'comment' && isset( $_GET['a
 
 	$data = json_decode( $_POST["data"] );
 	$result = CommentTable::insertComment( $data );
+
 	echo json_encode( $result );
 }

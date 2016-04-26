@@ -8,6 +8,7 @@ myApp.controller('MenuController', ['$scope','$location','$http','localStorageSe
         url : "php/index.php?name=seas"
     }).then(function mySucces(response) {
         $scope.menu = response.data;
+        console.log('menu seas - ', $scope.menu);
     }, function myError(response) {
 
     });

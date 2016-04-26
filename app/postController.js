@@ -1,5 +1,5 @@
-myApp.controller('PostController', ['$scope', '$location', '$routeParams','localStorageService','$http','$timeout',
-    function($scope, $location,  $routeParams, localStorageService, $http, $timeout) {
+myApp.controller('PostController', ['$scope', '$location', '$routeParams','localStorageService','$http','$timeout','$filter',
+    function($scope, $location,  $routeParams, localStorageService, $http, $timeout, $filter) {
     console.log('PostController');
 
     $scope.postID = $routeParams.id;
@@ -53,6 +53,10 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
     $scope.commentForm = function(){
         $scope.comment.cat = 'news';
         $scope.comment.post_id = $routeParams.id;
+
+        var dateTime = new Date();
+        $scope.comment.date = $filter('date')(dateTime, "yyyy-MM-dd HH:mm:ss");;
+        $scope.comment.approve = 1;
 
         console.log("Comment - ", $scope.comment);
 

@@ -69,7 +69,7 @@
                                 <h4 class="">Category</h4>
                                 <a href="#/" class="list-group-item"><span class="badge">14</span> Active item <span class="label label-primary">New</span></a>
 
-                                <a ng-href="#/sea/{{item.id}}/news" class="list-group-item" ng-repeat="item in menu track by $index | limitTo:5"><span class="badge">{{ item.count }}</span> {{ item.name }} </a>
+                                <a ng-href="#/sea/{{item.id}}/news" class="list-group-item" ng-repeat="item in menu | limitTo:5"><span class="badge">{{ item.count }}</span> {{ item.name }} </a>
 
 
                                 <div id="categories" class="collapse">

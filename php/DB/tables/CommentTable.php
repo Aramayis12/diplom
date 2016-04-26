@@ -5,13 +5,16 @@ if (interface_exists('ConstructDB')) {
 
     class CommentTable implements ConstructDB {
         private static $tableName = 'comments_table';
+
         private static $tableFields = array(
             'id' => 'id',
             'name' => 'name',
             'email' => 'email',
             'message' => 'message',
             'cat' => 'cat',
-            'post_id' => 'post_id'
+            'post_id' => 'post_id',
+            'date' => 'date',
+            'approve' => 'approve'
         );
 
         static public function getTableName()
@@ -25,6 +28,7 @@ if (interface_exists('ConstructDB')) {
         }
 
         static public function getComments(){
+
             $db = ConnectDB();
 
             $sql = 'SELECT * FROM ' . self::getTableName();
@@ -41,12 +45,11 @@ if (interface_exists('ConstructDB')) {
             $db = ConnectDB();
 
             $sql = '
-INSERT INTO ' . self::getTableName() . ' ( name, email, message, cat, post_id)
-VALUES ( :name, :email, :message, :cat, :post_id )
+INSERT INTO ' . self::getTableName() . ' ( name, email, message, cat, post_id, date, approve)
+VALUES ( :name, :email, :message, :cat, :post_id, :date, :approve )
             ';
 
             $stmt = $db->prepare( $sql );
-           
 
             
             $stmt->bindValue( ':name', $data->name, PDO::PARAM_STR );
@@ -54,6 +57,8 @@ VALUES ( :name, :email, :message, :cat, :post_id )
             $stmt->bindValue( ':message', $data->message, PDO::PARAM_STR );
             $stmt->bindValue( ':cat', $data->cat, PDO::PARAM_STR );
             $stmt->bindValue( ':post_id', $data->post_id, PDO::PARAM_INT );
+            $stmt->bindValue( ':date', $data->date, PDO::PARAM_STR );
+            $stmt->bindValue( ':approve', $data->approve, PDO::PARAM_INT );
             
 
             $stmt->execute();
@@ -67,7 +72,7 @@ VALUES ( :name, :email, :message, :cat, :post_id )
         static public function getComment( $data ){
             $db = ConnectDB();
 
-            $sql = 'SELECT * FROM ' . self::getTableName() . " WHERE cat=:cat && post_id=:post_id";
+            $sql = 'SELECT * FROM ' . self::getTableName() . " WHERE cat=:cat && post_id=:post_id  ORDER BY date DESC";
             $stmt = $db->prepare($sql);
 
             $stmt->bindValue( ':cat', $data->cat, PDO::PARAM_STR );

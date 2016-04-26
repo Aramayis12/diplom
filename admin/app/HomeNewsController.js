@@ -70,7 +70,7 @@ adminApp.controller('HomeNewsController', ['$scope','$location', 'localStorageSe
             fd.append('file', $scope.currentFile);
             fd.append('id', id);
 
-            $http.post('php/index.php?action=edit&name=sea&file=true', fd, {
+            $http.post('php/index.php?action=edit&name=news&file=true', fd, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined}
                 })

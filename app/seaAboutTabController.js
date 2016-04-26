@@ -3,6 +3,8 @@ myApp.controller('SeaAboutTabController', ['$scope', '$location', '$routeParams'
     console.log('SeaAboutTabController');
 
 
+
+
     $http({
         method : "GET",
         url : "php/index.php?name=seas"
@@ -21,5 +23,6 @@ myApp.controller('SeaAboutTabController', ['$scope', '$location', '$routeParams'
             }
         });
     }
+
 
 }]);

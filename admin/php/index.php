@@ -52,7 +52,7 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
         $result = NewsTable::getNewsOneWithSeaInfo( $id );
         echo json_encode( $result );
     }
-} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'news'){
+} else if( $_GET['action'] == 'edit' && $_GET['name'] == 'news' && !isset( $_GET['file'] )){
     include('DB/tables/NewsTable.php');
 
     $data = json_decode( $_POST['data'] );
@@ -104,6 +104,14 @@ if( $_GET['action'] == 'get' && $_GET['name'] == 'seas'){
 
     $name_file = UploadFiles::upload($_FILES['file'], 'hotel_' . $_POST['id']);
     $result = HotelTable::updateHotelImage( $name_file, $_POST['id'] );
+
+} else if ( $_GET['action'] == 'edit' && $_GET['name'] == 'news' && isset( $_GET['file'] )){
+    include('library/uploadFiles.php');
+    include('DB/tables/NewsTable.php');
+
+
+    $name_file = UploadFiles::upload($_FILES['file'], 'news_' . $_POST['id']);
+    $result = NewsTable::updateNewsImage( $name_file, $_POST['id'] );
 
 }
 

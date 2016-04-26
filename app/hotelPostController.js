@@ -1,5 +1,5 @@
-myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','localStorageService','$http','NgMap','$timeout',
-    function($scope, $location,  $routeParams, localStorageService, $http, NgMap, $timeout) {
+myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','localStorageService','$http','NgMap','$timeout','$filter',
+    function($scope, $location,  $routeParams, localStorageService, $http, NgMap, $timeout, $filter) {
         console.log('HotelPostController');
 
         NgMap.getMap().then(function(map) {
@@ -79,6 +79,10 @@ myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','
         $scope.commentForm = function(){
             $scope.comment.cat = 'hotel';
             $scope.comment.post_id = $routeParams.id;
+
+            var dateTime = new Date();
+            $scope.comment.date = $filter('date')(dateTime, "yyyy-MM-dd HH:mm:ss");;
+            $scope.comment.approve = 1;
 
             console.log($scope.comment);
 
