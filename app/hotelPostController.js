@@ -47,7 +47,7 @@ myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','
         var getComments = function(){
             $http({
                 method : "POST",
-                url : "php/index.php?name=comment&action=get",
+                url : "php/index.php?name=comment&action=get&cat=hotel",
                 data: 'data=' + JSON.stringify( params ),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function mySucces( response ) {

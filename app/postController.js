@@ -27,6 +27,27 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
         return log;
     }
 
+    var params = {
+        'cat' : 'news',
+        'id'  : $routeParams.id
+    };
+
+    var getComments = function(){
+        $http({
+            method : "POST",
+            url : "php/index.php?name=comment&action=get",
+            data: 'data=' + JSON.stringify( params ),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function mySucces( response ) {
+            $scope.comments = response.data;
+            console.log("Comment post - ", $scope.comments);
+        }, function myError(response) {
+
+        });
+    }
+
+    getComments();
+
     $scope.comment={};
 
     $scope.commentForm = function(){
@@ -46,7 +67,7 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
             $timeout(function(){
                 $scope.FormEditSuccess = false;
             },2000);
-            // getComments();
+            getComments();
             $scope.comment = {};
         }, function( response ){
 
