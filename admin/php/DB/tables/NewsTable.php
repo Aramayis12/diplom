@@ -7,7 +7,8 @@ if ( interface_exists( 'ConstructDB' ) ) {
             'name' => 'name',
             'description' => 'description',
             'image' => 'image',
-            'sea_id' => 'sea_id'
+            'sea_id' => 'sea_id',
+            'date' => 'date'
         );
 
         public static function getTableName()
@@ -25,8 +26,8 @@ if ( interface_exists( 'ConstructDB' ) ) {
             $db = ConnectDB();
 
             $sql = '
-INSERT INTO ' . self::getTableName() . ' ( name, description, sea_id, image )
-VALUES ( :name, :description, :sea_ID, :image )';
+INSERT INTO ' . self::getTableName() . ' ( name, description, sea_id, image, date )
+VALUES ( :name, :description, :sea_ID, :image, :date )';
 
             $stmt = $db->prepare( $sql );
 
@@ -35,6 +36,7 @@ VALUES ( :name, :description, :sea_ID, :image )';
             $stmt->bindValue( ':description', $data->news_desc, PDO::PARAM_STR );
             $stmt->bindValue( ':sea_ID',  (int) $data->news_sea_ID, PDO::PARAM_INT );
             $stmt->bindValue( ':image', $data->news_image, PDO::PARAM_STR );
+            $stmt->bindValue( ':date', $data->date, PDO::PARAM_STR );
 
             $stmt->execute();
             $lastInsertId = $db->lastInsertId();
