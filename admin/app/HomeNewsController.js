@@ -36,15 +36,14 @@ adminApp.controller('HomeNewsController', ['$scope','$location', 'localStorageSe
             data: "message=" + message,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function( response ){
-            console.log('seas - ', response.data);
+            
             $scope.seas =  response.data;
         }, function( response ){
 
         });
 
         $scope.selectFile = function( id ){
-            console.log("id = ", id);
-            console.log("file = ", $("#file_"+id));
+            
             $("#file_"+id).click();
         };
 

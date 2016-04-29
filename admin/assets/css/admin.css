@@ -262,3 +262,10 @@ img{max-width:100%;}
 .button-add-item span {
     font-size: 100px;
 }
+
+/* Stars */
+
+.glyphicon-star, .glyphicon-star-empty {
+    color: #A5881C;
+    font-size: 24px;
+}

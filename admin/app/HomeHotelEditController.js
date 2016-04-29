@@ -11,6 +11,14 @@ adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStor
     }
 
 
+    $scope.max = 5;
+
+    $scope.hoveringOver = function(value) {
+        $scope.overStar = value;
+        $scope.percent = 100 * (value / $scope.max);
+    };
+
+
     $scope.seaOption = { id: 0,name: '' };
 
     $http({
@@ -22,9 +30,16 @@ adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStor
         $scope.hotel = response.data[0];
         console.log( 'hotel - ', $scope.hotel );
         $scope.selected = currentOption( $scope.hotel.sea_ID );
+
+        console.log("Starts - ", $scope.hotel.hotel_stars);
+
     }, function( response ){
 
     });
+
+    $scope.isReadonly = false;
+
+    
 
     var currentOption = function( id ){
         var log = [];
@@ -67,6 +82,8 @@ adminApp.controller('HomeHotelEditController', ['$scope','$location', 'localStor
         });
 
     };
+
+
 
 }]);
 

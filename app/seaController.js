@@ -14,7 +14,7 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
         sea_id : $routeParams.id
     };
 
-    console.log("Params - ", JSON.stringify( params ));
+   
 
     $http({
         method : "POST",
@@ -22,7 +22,7 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
         data: 'data=' + JSON.stringify( params ),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).then(function mySuccess(response) {
-        console.log("==================> ", response.data);
+        
         $scope.items = response.data;
         pagination( response.data );
     }, function myError(response) {
@@ -68,4 +68,4 @@ myApp.controller('SeaController', ['$scope','localStorageService','$routeParams'
 
 
 
-}])
+}]);

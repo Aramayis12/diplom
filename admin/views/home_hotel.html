@@ -1,32 +1,4 @@
 
-<div class="container">
-    <div>
-        <div class="alert alert-success"> <span class="label label-info">Star Rating: Read/Write</span>
-
-            <div star-rating rating="starRating1" read-only="false" max-rating="10" click="click1(param)" mouse-hover="mouseHover1(param)" mouse-leave="mouseLeave1(param)"></div>
-            <div> <span class="label label-primary">Star Rating: {{starRating1}}</span>
-                <span class="label label-primary">Hover Rating: {{hoverRating1}}</span>
-
-            </div>
-        </div>
-        <div class="alert alert-danger"> <span class="label label-info">Star Rating: ReadOnly</span>
-
-            <div star-rating rating="starRating2" read-only="true" max-rating="7" click="click2(param)" mouse-hover="mouseHover2(param)" mouse-leave="mouseLeave2(param)"></div>
-            <div> <span class="label label-primary">Star Rating: {{starRating2}}</span>
-                <span class="label label-primary">Hover Rating: {{hoverRating2}}</span>
-
-            </div>
-        </div>
-        <div class="alert alert-info"> <span class="label label-info">Star Rating: Read/Write(with default values for readOnly & maxRating)</span>
-
-            <div star-rating rating="starRating3" click="click3(param)" mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)"></div>
-            <div> <span class="label label-primary">Star Rating: {{starRating3}}</span>
-                <span class="label label-primary">Hover Rating: {{hoverRating3}}</span>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <div ui-view="formcontent" class=" "></div>
@@ -92,6 +64,16 @@
                                     </div>
                                 </div>
                                 <div class="caption">
+
+
+                                    
+                                    <uib-rating ng-model="hotel.stars" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating">
+                                    </uib-rating>
+
+                                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+
+
+
                                     <p>{{hotel.name}}</p>
                                     <button ng-click="selectFile( hotel.id )" ng-hide="fileUploadIs_{{hotel.id}}">Upload Your File</button>
                                     <input type="file" style="display:none" ng-attr-id="{{ 'file_' + hotel.id }}"

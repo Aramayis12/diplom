@@ -57,7 +57,10 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Stars <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div star-rating rating="hotel.hotel_stars" click="click3(param)" mouse-hover="mouseHover3(param)"></div>
+                                <uib-rating ng-model="hotel.hotel_stars" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating">
+                                </uib-rating>
+
+                                <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
                             </div>
                         </div>
                         <div class="item form-group">
