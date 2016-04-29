@@ -8,6 +8,9 @@ myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','
             console.log('shapes', map.shapes);
         });
 
+        $scope.cordinateMapX = 41;
+        $scope.cordinateMapY = -87;
+
         /* Star Rating For Hotel */
 
         $scope.rate = 0;
@@ -27,9 +30,11 @@ myApp.controller('HotelPostController', ['$scope', '$location', '$routeParams','
         }).then(function mySucces(response) {
             
             var data = filterSea( response.data );
-
+            console.log( "Hotel - ", data );
             $scope.item = data[0];
             $scope.rate = data[0].stars;
+            $scope.cordinateMapX = data[0].cord_x;
+            $scope.cordinateMapY = data[0].cord_y;
 
 
         }, function myError(response) {
