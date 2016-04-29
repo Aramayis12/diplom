@@ -55,7 +55,7 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
         $scope.comment.post_id = $routeParams.id;
 
         var dateTime = new Date();
-        $scope.comment.date = $filter('date')(dateTime, "yyyy-MM-dd HH:mm:ss");;
+        $scope.comment.date = $filter('date')(dateTime, "yyyy-MM-dd HH:mm:ss");
         $scope.comment.approve = 1;
 
         console.log("Comment - ", $scope.comment);

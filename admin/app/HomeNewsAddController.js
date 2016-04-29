@@ -1,5 +1,5 @@
-adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorageService','$http','$stateParams','$timeout',
-    function($scope,$location,localStorageService, $http, $stateParams, $timeout) {
+adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorageService','$http','$stateParams','$timeout','$filter',
+    function($scope,$location,localStorageService, $http, $stateParams, $timeout, $filter) {
 
 
         var isLoggedIn = localStorageService.get('loginSuccess');
@@ -36,6 +36,8 @@ adminApp.controller('HomeNewsAddController', ['$scope','$location', 'localStorag
             $scope.list.news_name = this.news.news_name;
             $scope.list.news_sea_ID = this.selected.id;
             $scope.list.news_image = 'assets/imgs/empty/hotel_empty.jpg';
+            var dateTime = new Date();
+            $scope.list.date = $filter('date')(dateTime, "yyyy-MM-dd HH:mm:ss");
 
             console.log('LIST - ', $scope.list);
             console.log('LIgSTt - ',JSON.stringify( $scope.list ));
