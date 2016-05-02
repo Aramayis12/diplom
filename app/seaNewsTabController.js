@@ -68,4 +68,6 @@ myApp.controller('SeaNewsTabController', ['$scope','localStorageService','$route
         }
     };
 
+    
+
 }]);

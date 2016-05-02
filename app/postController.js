@@ -11,6 +11,7 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
         var data = filterSea( response.data );
         $scope.item = data[0];
         $scope.items = response.data;
+        setShareIcons();
     }, function myError(response) {
 
     });
@@ -76,7 +77,17 @@ myApp.controller('PostController', ['$scope', '$location', '$routeParams','local
         }, function( response ){
 
         });
-    }
+    };
+
+    function setShareIcons (){
+        $scope.myModel = {
+          Url: $location.protocol() + '://'+ $location.host() + $location.path(),
+          Name: $scope.item.name,
+          ImageUrl: $location.protocol() + '://'+ $location.host() +'/admin/' + $scope.item.image
+        };
+
+    };
+    
 
 
 }]);
