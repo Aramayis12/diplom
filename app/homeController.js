@@ -1,5 +1,8 @@
-myApp.controller('HomeController', ['$scope','$http','$anchorScroll','localStorageService',  function($scope, $http, $anchorScroll, localStorageService) {
+myApp.controller('HomeController', ['$scope','$http','$anchorScroll','localStorageService', '$location', 
+  function($scope, $http, $anchorScroll, localStorageService, $location) {
+
     console.log('HomeController');
+
 	if (navigator.geolocation) navigator.geolocation.getCurrentPosition(onPositionUpdate);
  
 	function onPositionUpdate(position) {
@@ -25,6 +28,9 @@ myApp.controller('HomeController', ['$scope','$http','$anchorScroll','localStora
 	   */
 	}
 
+    /* Url */
+    $scope.host = $location.protocol() + '://'+ $location.host() +'/';
+    
     /* Pagination */
 
 

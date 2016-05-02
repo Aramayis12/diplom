@@ -48,7 +48,23 @@
     })
 
 
-myApp.config(function($routeProvider,localStorageServiceProvider) {
+myApp.config(function($routeProvider,localStorageServiceProvider, $locationProvider) {
+    
+    //check browser support
+    console.log('window.history - ', window.history);
+    console.log('window.history.pushState - ', window.history.pushState);
+    
+    if(window.history && window.history.pushState){
+        //$locationProvider.html5Mode(true); will cause an error $location in HTML5 mode requires a  tag to be present! Unless you set baseUrl tag after head tag like so: <head> <base href="/">
+
+     // to know more about setting base URL visit: https://docs.angularjs.org/error/$location/nobase
+
+     // if you don't wish to set base URL then use this
+     $locationProvider.html5Mode({
+             enabled: true,
+             requireBase: false
+      });
+    }
 
 
     localStorageServiceProvider
@@ -76,5 +92,6 @@ myApp.config(function($routeProvider,localStorageServiceProvider) {
         .when('/hotel/post/:id',{
             templateUrl:'views/hotel_post.html',
             controller:'HotelPostController'
-        })
+        });
+
 });

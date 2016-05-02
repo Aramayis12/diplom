@@ -7,5 +7,7 @@ adminApp.controller('HomeController', ['$scope','$location', 'localStorageServic
         $location.path('/login');
     }
 
+    $scope.host = $location.protocol() + '://'+ $location.host() +'/admin';
+   
     
 }]);

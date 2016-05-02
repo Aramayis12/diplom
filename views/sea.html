@@ -17,98 +17,7 @@
                 <h2><a href="post.html">{{ item.name }}</a></h2>
                 <div class="post-meta"><span>by <a href="#">Jamie Mooze</a></span>/<span><i class="fa fa-clock-o"></i>March 14, 2015</span>/<span><i class="fa fa-comment-o"></i> <a href="#">343</a></span></div>
                 <div class="blog-post-text">
-
                     <p>{{ item.description }}</p>
-
-                </div>
-            </div>
-
-            <div class="social_stuff">
-                <div class="widget">
-                    <div class="twitter">
-                        <div class="stat"><a href="http://twitter.com/wrapbootstrap" title="Follow us on Twitter!" target="_blank" rel="nofollow"><span class="count">27.1k</span><span class="desc">Followers</span></a></div>
-                    </div>
-                    <div class="facebook">
-                        <div class="stat"><a href="http://www.facebook.com/wrapbootstrap" title="Follow us on Facebook!" target="_blank" rel="nofollow"><span class="count">31.6k</span><span class="desc">Followers</span></a></div>
-                    </div>
-                    <div class="rss">
-                        <div class="stat"><a href="http://feeds.feedburner.com/wrapbootstrap" title="Subscribe to our RSS feed!" target="_blank" rel="nofollow"><span class="count">757</span><span class="desc">Subscribers</span></a></div>
-                    </div>
-                    <div class="email">
-                        <div class="stat"><a href="http://eepurl.com/iVhpj" title="Subscribe to our newsletter!" target="_blank" rel="nofollow"><span class="count">53.5k</span><span class="desc">Subscribers</span></a></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <form class="basic-grey" ng-submit="commentForm()">
-                <h1>Contact Form
-                    <span>Please fill all the texts in the fields.</span>
-                </h1>
-                <label>
-                    <span>Your Name :</span>
-                    <input id="name" type="text" ng-model="comment.name" placeholder="Your Full Name" />
-                </label>
-
-                <label>
-                    <span>Your Email :</span>
-                    <input id="email" type="email" ng-model="comment.email" placeholder="Valid Email Address" />
-                </label>
-
-                <label>
-                    <span>Message :</span>
-                    <textarea id="message" ng-model="comment.message" placeholder="Your Message to Us"></textarea>
-                </label>
-
-                <!--
-                    <label>
-                       <span>Subject :</span><select name="selection" ng-model="comment.selection">
-                       <option value="Job Inquiry">Job Inquiry</option>
-                       <option value="General Question">General Question</option>
-                       </select>
-                    </label>
-                -->
-
-                <label>
-                    <span>&nbsp;</span>
-                    <input type="submit" class="button" value="Send" />
-                </label>
-            </form>
-
-            <div class="alert alert-success" ng-show="FormEditSuccess">
-                <strong>Success!</strong> Indicates a successful or positive action.
-            </div>
-
-            <br />
-
-            <!-- <pre>{{comments}}</pre> -->
-            <div id="comment" ng-repeat="item in comments">
-                <div class="custom-panel comic-panel" style="width:90%" ng-if="$even">
-                    <div class="custom-panel-title">
-                        <h4>{{item.name}}</h4>
-                    </div>
-                    <div class="custom-panel-body">
-                        <p class="comicchar-holder">
-                            <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
-                        </p>
-                        <p class="comment-text">
-                            {{item.message}}
-                        </p>
-                    </div>
-                </div>
-
-                <div class="custom-panel comic-panel" style="float: right;text-align:right;width:90%" ng-if="$odd">
-                    <div class="custom-panel-title">
-                        <h4>{{item.name}}</h4>
-                    </div>
-                    <div class="custom-panel-body">
-                        <p class="comicchar-holder" style="float: right;">
-                            <img src="http://prideparrot.com/Source-Codes/Images/bootstrap/comicchar2.png">
-                        </p>
-                        <p class="comment-text" style="">
-                            {{item.message}}
-                        </p>
-                    </div>
                 </div>
             </div>
 
@@ -118,10 +27,10 @@
     </pane>
 
     <pane title="News">
-        <div id="news" class="top-buffer">
-            <div ng-repeat="item in items  | filter:itemsList">
+        <div id="news" class="top-buffer" ng-controller="SeaNewsTabController">
+            <div ng-repeat="item in items  | filter:filterList">
                 <div class="row">
-                    <div class="col-sm-4"><a ng-href="#/news/post/{{item.id}}" class=""><img ng-src="admin/{{ item.image }}" class="img-responsive"></a>
+                    <div class="col-sm-4"><a ng-href="/news/post/{{item.id}}" class=""><img ng-src="admin/{{ item.image }}" class="img-responsive"></a>
                     </div>
                     <div class="col-sm-8">
                         <h3 class="title">{{ item.name }}</h3>
@@ -143,9 +52,9 @@
 
 
             <ul class="pagination pagination-lg pull-right">
-                <li ><a ng-href="#{{ url }}">«</a></li>
-                <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a ng-href="#{{ url }}">{{ page + 1 }}</a></li>
-                <li ng-click="pageToNext()"><a ng-href="#{{ url }}">»</a></li>
+                <li ><a ng-href="http://{{ url }}">«</a></li>
+                <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a ng-href="http://{{ url }}">{{ page + 1 }}</a></li>
+                <li ng-click="pageToNext()"><a ng-href="http://{{ url }}">»</a></li>
             </ul>
         </div>
     </pane>
@@ -159,9 +68,9 @@
         <div id="hotels" class="top-buffer" ng-controller="SeaHotelTabController">
             <!--<pre>{{items}}</pre>-->
             <h2>Count <span class="badge ng-binding">{{ items.length }}</span></h2>
-            <div ng-repeat="item in items  | filter:itemsList">
+            <div ng-repeat="item in items | filter:filterList "><!-- | filter:itemsList -->
                 <div class="row">
-                    <div class="col-sm-4"><a ng-href="#/hotel/post/{{item.id}}" class=""><img ng-src="admin/{{ item.img_hotel_path }}" class="img-responsive"></a>
+                    <div class="col-sm-4"><a ng-href="/hotel/post/{{item.id}}" class=""><img ng-src="admin/{{ item.img_hotel_path }}" class="img-responsive"></a>
                     </div>
                     <div class="col-sm-8">
                         <h3 class="title">{{ item.name }}</h3>
@@ -186,9 +95,9 @@
 
 
             <ul class="pagination pagination-lg pull-right">
-                <li ><a ng-href="#{{ url }}">«</a></li>
-                <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a ng-href="#{{ url }}">{{ page + 1 }}</a></li>
-                <li ng-click="pageToNext()"><a ng-href="#{{ url }}">»</a></li>
+                <li ><a ng-href="http://{{ url }}">«</a></li>
+                <li  ng-repeat="page in pageCount" ng-click="pageTo( $event, $index )" ng-class="{'active': page == pageCount[0]}"><a ng-href="http://{{ url }}">{{ page + 1 }}</a></li>
+                <li ng-click="pageToNext()"><a ng-href="http://{{ url }}">»</a></li>
             </ul>
         </div>
 

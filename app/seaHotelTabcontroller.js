@@ -1,7 +1,10 @@
 myApp.controller('SeaHotelTabController', ['$scope', '$location', '$routeParams','localStorageService','$http','$anchorScroll',
     function($scope, $location,  $routeParams, localStorageService, $http, $anchorScroll) {
         console.log('SeaHotelTabController ', $routeParams);
-        console.log('sea_id = ', $routeParams.id);
+
+
+        $scope.url = $location.host() + $location.path();
+        console.log('location path = ', $location.host() + $location.path());
 
         var params = {
             sea_id : $routeParams.id
@@ -47,7 +50,8 @@ myApp.controller('SeaHotelTabController', ['$scope', '$location', '$routeParams'
             console.log( pages );
         };
 
-        $scope.itemsList = function(tags, index){
+        $scope.filterList = function( item, index ){
+
             var start =  $scope.pageSize * ( $scope.currentPage - 1 );
             var end =  $scope.currentPage *  $scope.pageSize;
 
